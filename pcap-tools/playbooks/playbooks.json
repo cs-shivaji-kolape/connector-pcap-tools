@@ -1,0 +1,160 @@
+{
+  "type": "workflow_collections",
+  "data": [
+    {
+      "@type": "WorkflowCollection",
+      "name": "Sample - PCAP Parser - 1.0.0",
+      "description": null,
+      "visible": true,
+      "image": null,
+      "uuid": "1d4d9ce5-588d-415e-bd06-710b18d544b0",
+      "id": 142,
+      "deletedAt": null,
+      "importedBy": [],
+      "recordTags": [],
+      "workflows": [
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "PCAP to JSON",
+          "aliasName": null,
+          "tag": null,
+          "description": "Parse PCAP file and export it as JSON",
+          "isActive": true,
+          "debug": true,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1702024432,
+          "collection": "/api/3/workflow_collections/1d4d9ce5-588d-415e-bd06-710b18d544b0",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/18875321-3a96-4548-bd5c-7176a74b5dea",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Output",
+              "description": null,
+              "arguments": {
+                "results": "{{vars.steps.PCAP_To_JSON.data|toDict}}"
+              },
+              "status": null,
+              "top": "300",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+              "group": null,
+              "uuid": "f01a5b08-b32e-4967-b10b-1496aa0ded24"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "PCAP To JSON",
+              "description": null,
+              "arguments": {
+                "name": "PCAP Parser",
+                "params": {
+                  "file_iri": "{{vars.input.records[0].file['@id']}}"
+                },
+                "version": "1.0.0",
+                "connector": "pcap-parser",
+                "operation": "pcap_to_json",
+                "operationTitle": "PCAP To JSON",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "34151581-9c42-41d1-8874-9854db8d936b"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "48b97038-a68c-4b81-80a7-797911eedaf1",
+                "resources": [
+                  "attachments"
+                ],
+                "__triggerLimit": true,
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "triggerOnSource": true,
+                "displayConditions": {
+                  "assets": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  },
+                  "attachments": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": false,
+                "showToasterMessage": {
+                  "visible": false,
+                  "messageVisible": true
+                },
+                "triggerOnReplicate": false,
+                "singleRecordExecution": true
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "18875321-3a96-4548-bd5c-7176a74b5dea"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "pcap -> PcapD",
+              "targetStep": "/api/3/workflow_steps/f01a5b08-b32e-4967-b10b-1496aa0ded24",
+              "sourceStep": "/api/3/workflow_steps/34151581-9c42-41d1-8874-9854db8d936b",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "e72198b1-3a7f-45ea-80ad-4bdbce4b2ad6"
+            },
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> pcap",
+              "targetStep": "/api/3/workflow_steps/34151581-9c42-41d1-8874-9854db8d936b",
+              "sourceStep": "/api/3/workflow_steps/18875321-3a96-4548-bd5c-7176a74b5dea",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "e76aa74b-9344-447d-af26-c301b4bf39a6"
+            }
+          ],
+          "groups": [],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "9b2ee481-401f-4012-9004-c2db7ea13a76",
+          "id": 1900,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "pcap-tools"
+          ]
+        }
+      ]
+    }
+  ],
+  "exported_tags": [
+    "pcap-tools"
+  ]
+}

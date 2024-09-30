@@ -8,7 +8,7 @@
   "icon_small_name": "small_icon.png",
   "icon_large_name": "large_icon.png",
   "category": "Network Analysis and Monitoring",
-  "help_online": "",
+  "help_online": "https://github.com/fortinet-fortisoar/connector-pcap-tools/blob/release/1.0.0/docs/PcapToolDoc.md",
   "cs_compatible": true,
   "configuration": {},
   "operations": [
